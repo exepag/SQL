@@ -1,0 +1,164 @@
+show databases;
+use my_online_store;
+show tables;
+select * from products;
+select * from brands;
+select * from customers;
+
+
+alter table products modify column brand_id int(11) default null;
+desc products;
+select * from products;
+insert into products (id,name,price,rating,brand_id) values (NULL,'Lenovo',999000,1,NULL);
+select * from products;
+select * from brands;
+insert into brands (id,name) values (NULL,'Lenovo');
+
+
+select id, name as nama_produk from products;
+select id, name as nama_produk, rating as skor from products;
+select id, name, concat ("test "," default "," description",".") as description from products;
+select id, name, concat ("test "," default "," description"," for ", name) as description from products;
+
+
+select count (id) as total_baris from products;
+select * from products join brands on products.brand_id = brands.id;
+select * from products left join brands on products.brand_id = brands.id;
+select * from products right join brands on products.brand_id = brands.id;
+select * from products inner join brands on products.brand_id = brands.id;
+
+
+select * from products where rating >= 4;
+select * from products where price > 1000000 and price < 2000000;
+select rating, count(id) as jumlah from products group by rating;
+select rating, count(id) as jumlah from products group by rating order by jumlah asc;
+select * from products order by name asc;
+select * from products where name like "%lenovo%";
+select * from products where name like "%lenvo%";
+
+
+
+create table customer_address(customer_id int(11) auto_increment primary key, address text);
+create table product_category(id int(11) auto_increment primary key, name varchar(55));
+create table product_category_link(id int(11) auto_increment primary key, product_id int(11), category_id int(11));
+
+
+
+insert into customer_address(customer_id,address) values(1, 'UOB Plaza, Jakarta Pusat');
+select * from customer_address;
+insert into product_category(id,name) values (null,'Elektronik');
+insert into product_category(id,name) values (null,'Fashion');
+select * from product_category;
+
+
+insert into product_category_link (id,product_id,category_id) values (null,4,1);
+select * from product_category_link;
+
+insert into product_category (id,name) values (null,'Kitchen');
+select * from product_category;
+
+insert into product_category_link (id,product_id,category_id) values (NULL,'7','1');
+select * from product_category_link;
+
+
+
+Assignment:
+
+1. create table kelas ( id int(11) auto_increment primary key, kode_kelas varchar(6) );
+ 
+2. create table siswa ( id int(11) auto_increment primary key, NIM int(16), nama text, jenis_kelamin text);
+
+3. create table kelas_siswa ( id int(11) auto_increment primary key, kelas_id int(11), siswa_id int(11) );
+
+4. insert into kelas (id, kode_kelas) values (null, 'A');
+   insert into kelas (id, kode_kelas) values (null, 'B');
+   insert into kelas (id, kode_kelas) values (null, 'C');
+   insert into kelas (id, kode_kelas) values (null, 'D');
+
+5. insert into siswa (id, NIM, nama, jenis_kelamin) values (null, 001, 'Agus', 'Laki-Laki');
+   insert into siswa (id, NIM, nama, jenis_kelamin) values (null, 002, 'Bayu', 'Laki-Laki');
+   insert into siswa (id, NIM, nama, jenis_kelamin) values (null, 003, 'Citra', 'Perempuan');
+   insert into siswa (id, NIM, nama, jenis_kelamin) values (null, 004, 'Dini', 'Perempuan');
+   insert into siswa (id, NIM, nama, jenis_kelamin) values (null, 005, 'Eka', 'Laki-Laki');
+   insert into siswa (id, NIM, nama, jenis_kelamin) values (null, 006, 'Sari', 'Perempuan');
+   insert into siswa (id, NIM, nama, jenis_kelamin) values (null, 007, 'Putri', 'Perempuan');
+   insert into siswa (id, NIM, nama, jenis_kelamin) values (null, 008, 'Ilham', 'Laki-Laki');
+   insert into siswa (id, NIM, nama, jenis_kelamin) values (null, 009, 'Rini', 'Perempuan');
+   insert into siswa (id, NIM, nama, jenis_kelamin) values (null, 0010, 'Siti', 'Perempuan');
+
+6. insert into kelas_siswa (id, kelas_id, siswa_id ) values (null, 1, 3);   
+   insert into kelas_siswa (id, kelas_id, siswa_id ) values (null, 1, 4); 
+   insert into kelas_siswa (id, kelas_id, siswa_id ) values (null, 2, 1); 
+   insert into kelas_siswa (id, kelas_id, siswa_id ) values (null, 2, 2); 
+   insert into kelas_siswa (id, kelas_id, siswa_id ) values (null, 2, 6); 
+   insert into kelas_siswa (id, kelas_id, siswa_id ) values (null, 3, 7); 
+   insert into kelas_siswa (id, kelas_id, siswa_id ) values (null, 3, 8); 
+   insert into kelas_siswa (id, kelas_id, siswa_id ) values (null, 3, 5); 
+   insert into kelas_siswa (id, kelas_id, siswa_id ) values (null, 4, 9); 
+   insert into kelas_siswa (id, kelas_id, siswa_id ) values (null, 4, 10); 
+
+
+7. Gak Bisa!
+   insert into kelas_siswa (id, kode_kelas, nama ) values (null, 'A', 'Citra');
+   insert into kelas_siswa (id, kode_kelas, nama ) values (null, 'A', 'Dini');
+   insert into kelas_siswa (id, kode_kelas, nama ) values (null, 'B', 'Agus');
+   insert into kelas_siswa (id, kode_kelas, nama ) values (null, 'B', 'Bayu');
+   insert into kelas_siswa (id, kode_kelas, nama ) values (null, 'B', 'Sari');
+   insert into kelas_siswa (id, kode_kelas, nama ) values (null, 'C', 'Putri');
+   insert into kelas_siswa (id, kode_kelas, nama ) values (null, 'C', 'Ilham');
+   insert into kelas_siswa (id, kode_kelas, nama ) values (null, 'C', 'Eka');
+   insert into kelas_siswa (id, kode_kelas, nama ) values (null, 'D', 'Rini');
+   insert into kelas_siswa (id, kode_kelas, nama ) values (null, 'D', 'Siti');
+
+8. Solusi:
+   create table orientasi (id int(11) auto_increment primary key, kelas text, nama text);
+   insert into orientasi (id,kelas,nama) values (null,'A','Citra');
+   insert into orientasi (id,kelas,nama) values (null,'A','Dini');
+   insert into orientasi (id,kelas,nama) values (null,'B','Agus');
+   insert into orientasi (id,kelas,nama) values (null,'B','Bayu');
+   insert into orientasi (id,kelas,nama) values (null,'B','Sari');
+   insert into orientasi (id,kelas,nama) values (null,'C','Putri');
+   insert into orientasi (id,kelas,nama) values (null,'C','Ilham');
+   insert into orientasi (id,kelas,nama) values (null,'C','Eka');
+   insert into orientasi (id,kelas,nama) values (null,'D','Rini');
+   insert into orientasi (id,kelas,nama) values (null,'D','Siti');
+  
+
+
+To Export .sql file
+
+	==>	sudo /opt/lampp/bin/mysqldump -uroot sekolah > sekolah.sql
+
+	mysqldump -u root -p sekolah > sekolah.sql
+	mysql -u root -p
+	drop database sekolah;
+	show database;
+	create database sekolah;
+	show databases;
+	use sekolah;
+	show tables;
+	
+To Import .sql file
+
+	==>	sudo /opt/lampp/bin/mysql -uroot sekolah < ~/EXE/MDB/sekolah.sql
+
+	mysql -u root -p -h localhost sekolah < sekolah.sql
+	mysql -u root -p
+	use sekolah;
+	show tables;
+
+
+
+
+JOIN
+	SELECT * FROM siswa  JOIN  kelas_siswa  ON  kelas_siswa.id = siswa.id  ;
+	SELECT * FROM siswa  JOIN  kelas_siswa  ON  kelas_siswa.siswa_id = siswa.id  JOIN  kelas  ON  kelas.id = kelas_siswa.kelas_id  ;
+
+
+	select * from siswa join kelas_siswa on kelas_siswa.id=siswa.id;
+	select * from siswa join kelas_siswa on kelas_siswa.siswa_id=siswa.id join kelas on kelas.id=kelas_siswa.kelas_id;
+
+
+
+
+
